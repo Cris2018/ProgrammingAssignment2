@@ -7,7 +7,7 @@ makeCacheMatrix <- function( m = matrix() ) {
         m <<- matrix
         i <<- NULL
     }
-    ## Get the matrix
+    ## Function to get the matrix
     get <- function() {
         m
     }
@@ -17,14 +17,14 @@ makeCacheMatrix <- function( m = matrix() ) {
     getInverse <- function() {
         i
     }
-    ## List of methods to be used with matrix
+    ## List of methods to be used with matrix (eg. m$set())
     list(set = set, get = get,
          setInverse = setInverse,
          getInverse = getInverse)
 }
 
-##This function computes the inverse of the special “matrix” 
-##returned by makeCacheMatrix abov
+##This function computes the inverse of the special matrix
+##returned by makeCacheMatrix above
 
 cacheSolve <- function(x, ...) {
     m <- x$getInverse()
@@ -35,7 +35,7 @@ cacheSolve <- function(x, ...) {
     }
     
     data <- x$get()
-    m <- solve(data) %*% data
+    m <- solve(data,...)
     x$setInverse(m)
     m
 }
